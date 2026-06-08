@@ -1,0 +1,65 @@
+package com.llanquihuetour.model;
+
+/**
+ * Representa un empleado de la agencia de Turismo Llanquihue Tour.
+ *
+ * @author Sara Rioseco
+ * @version 1.0
+ */
+public class Empleado extends Persona {
+
+    private String cargo;
+
+    /**
+     * Crea un nuevo empleado.
+     *
+     * @param nombre nombre del empleado
+     * @param apellido apellido del empleado
+     * @param rut rut del empleado
+     * @param direccion dirección del empleado
+     * @param cargo cargo del empleado
+     */
+    public Empleado(
+            String nombre,
+            String apellido,
+            Rut rut,
+            Direccion direccion,
+            String cargo) {
+
+        super(nombre, apellido, rut, direccion);
+        setCargo(cargo);
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+
+        if (cargo == null || cargo.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Argumento no puede estar vacío."
+            );
+        }
+
+        this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+            Datos del Empleado:
+            Nombre: %s %s
+            RUT: %s
+            Cargo: %s
+            
+            %s
+            """,
+                getNombre(),
+                getApellido(),
+                getRut(),
+                cargo,
+                getDireccion()
+        );
+    }
+}
