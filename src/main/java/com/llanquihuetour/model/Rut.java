@@ -22,13 +22,69 @@ public class Rut {
      */
     public Rut(String numero) throws RutInvalidException {
 
+        if (numero == null) {
+            throw new RutInvalidException("Rut no puede ser nulo");
+        }
+
         if (!numero.matches("[0-9]+-[0-9kK]")) {
-            throw new RutInvalidException(
-                    "Formato RUT inválido. Expected XXXXXXXX-X"
-            );
+            throw new RutInvalidException("Formato RUT inválido. Expected XXXXXXXX-X");
+        }
+
+        if (!validarRut(numero)) {
+            throw new RutInvalidException("Rut inválido.");
         }
 
         this.numero = numero;
+    }
+
+    public static boolean validarRut(String rutCompleto) {
+        if (rutCompleto == null || rutCompleto.isBlank()) {
+            return false;
+        }
+
+        // Eliminar puntos y convertir a mayúsculas
+        rutCompleto = rutCompleto.replace(".", "").toUpperCase();
+
+        String[] partes = rutCompleto.split("-");
+
+        if (partes.length != 2) {
+            return false;
+        }
+
+        String numeroRut = partes[0];
+        String dvIngresado = partes[1];
+
+        String dvCalculado = calcularDV(numeroRut);
+
+        return dvCalculado.equals(dvIngresado);
+    }
+
+    private static String calcularDV(String numeroRut) {
+        int suma = 0;
+        int multiplicador = 2;
+
+        for (int i = numeroRut.length() - 1; i >= 0; i--) {
+            int digito = Character.getNumericValue(numeroRut.charAt(i));
+
+            suma += digito * multiplicador;
+
+            multiplicador++;
+            if (multiplicador > 7) {
+                multiplicador = 2;
+            }
+        }
+
+        int resultado = 11 - (suma % 11);
+
+        if (resultado == 11) {
+            return "0";
+        }
+
+        if (resultado == 10) {
+            return "K";
+        }
+
+        return String.valueOf(resultado);
     }
 
     /**

@@ -25,19 +25,36 @@ La aplicación permite registrar y mostrar información de clientes y empleados,
 
 ```text
 src
+├── main
+│   ├── java
+│   │   └── com.llanquihuetour
+│   │       │
+│   │       ├── ui
+│   │       │   └── Main.java
+│   │       │
+│   │       ├── data
+│   │       │   └── GestorDatos.java
+│   │       │
+│   │       ├── exception
+│   │       │   └── RutInvalidException.java
+│   │       │
+│   │       └── model
+│   │           ├── Persona.java
+│   │           ├── Cliente.java
+│   │           ├── Color.java
+│   │           ├── Direccion.java
+│   │           ├── Empleado.java
+│   │           ├── Rut.java
+│   │           └── Tour.java
+│   │       
+│   │       
+│   │    
+│   └── resources        
+│       └── images
 │
-├── app
-│   └── Main.java
-│
-├── model
-│   ├── Persona.java
-│   ├── Cliente.java
-│   ├── Empleado.java
-│   ├── Direccion.java
-│   └── Rut.java
-│
-└── exception
-    └── RutInvalidException.java
+└── test
+
+
 ```
 
 ---
