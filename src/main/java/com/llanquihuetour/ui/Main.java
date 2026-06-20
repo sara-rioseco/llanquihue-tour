@@ -6,7 +6,7 @@ import com.llanquihuetour.model.Tour;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.llanquihuetour.model.Color.*;
+import static com.llanquihuetour.util.Color.*;
 
 public class Main {
 
@@ -58,6 +58,29 @@ public class Main {
                     System.out.println(tour);
                 }
                 System.out.println(GREEN.getColor() + "Total de tours premium: " + toursFiltrados.size() + RESET.getColor());
+            }
+            
+            // 4. Búsqueda simple por destino
+            String destinoBuscado = "Puerto Varas";
+            ArrayList<Tour> toursPorDestino = new ArrayList<>();
+
+            for (Tour tour : tours) {
+                if (tour.getDestino().equalsIgnoreCase(destinoBuscado)) {
+                    toursPorDestino.add(tour);
+                }
+            }
+
+            System.out.println();
+            System.out.println(CYAN.getColor() + "🔎 BÚSQUEDA POR DESTINO: " + destinoBuscado + RESET.getColor());
+            System.out.println(BLUE.getColor() + "----------------------------------------------------" + RESET.getColor());
+
+            if (toursPorDestino.isEmpty()) {
+                System.out.println(RED.getColor() + "No se encontraron tours para el destino indicado." + RESET.getColor());
+            } else {
+                for (Tour tour : toursPorDestino) {
+                    System.out.println(tour);
+                }
+                System.out.println(GREEN.getColor() + "Total encontrados: " + toursPorDestino.size() + RESET.getColor());
             }
 
             System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());

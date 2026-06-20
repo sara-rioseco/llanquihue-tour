@@ -47,14 +47,15 @@ llanquihue-tour/
 │   │   │       │   └── GestorDatos.java
 │   │   │       ├── exception/
 │   │   │       │   └── RutInvalidException.java
+│   │   │       ├── util/
+│   │   │       │   └── Color.java
 │   │   │       └── model/
 │   │   │           ├── Persona.java
 │   │   │           ├── Cliente.java
 │   │   │           ├── Empleado.java
 │   │   │           ├── Direccion.java
 │   │   │           ├── Rut.java
-│   │   │           ├── Tour.java
-│   │   │           └── Color.java
+│   │   │           └── Tour.java
 │   │   └── resources/
 │   │       ├── tours.txt
 │   │       └── images/
@@ -69,7 +70,7 @@ llanquihue-tour/
 
 * `Persona` corresponde a la clase base del sistema.
 * `Cliente` hereda de `Persona` y agrega el atributo tipoCliente.
-* `Empleado` hereda de `Persona` t agrega el atributo cargo.
+* `Empleado` hereda de `Persona` y agrega el atributo cargo.
 * Una `Persona` tiene una `Direccion` (composición).
 * Una `Persona` tiene un `Rut` (composición).
 
@@ -78,7 +79,7 @@ llanquihue-tour/
 ## Modelo de Tours
 
 * `Tour` representa un programa turístico con nombre, destino y precio.
-* `GestorDatos` se encarga de leer el archivo `tours.txt`y crear objetos `Tour`.
+* `GestorDatos` se encarga de leer el archivo `tours.txt` y crear objetos `Tour`.
 
 ---
 
@@ -119,9 +120,10 @@ Parque Nacional Alerce Andino;Puerto Montt;55000
 1. Abrir el proyecto en IntelliJ IDEA.
 2. Ubicar la clase `Main` dentro del paquete `com.llanquihuetour.ui`.
 3. Ejecutar el método `main()`.
-4. Revisar la información mostrada en la consola que mostrará:}
-- Catálogo completo de tours
-- Tours filtrados por precio (tours premium > $40.000)
+4. Revisar la información mostrada en la consola:
+    - Catálogo completo de tours
+    - Tours filtrados por precio, tours premium mayores a $40.000
+    - Búsqueda simple de tours por destino
 
 ## Ejemplo de salida
 ```text
@@ -141,6 +143,9 @@ Precio: $45,000 CLP
 
 🔍 TOURS PREMIUM (precio mayor a $40,000 CLP):
 ----------------------------------------------------
+...
+🔎 BÚSQUEDA POR DESTINO: Puerto Varas
+Tour: Nombre: Tour Volcán Osorno Destino: Puerto Varas Precio: $45,000 CLP
 ...
 ```
 ---

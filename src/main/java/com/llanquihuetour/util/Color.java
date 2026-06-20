@@ -1,4 +1,4 @@
-package com.llanquihuetour.model;
+package com.llanquihuetour.util;
 
 public enum Color {
     /**
