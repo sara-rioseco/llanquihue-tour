@@ -1,10 +1,9 @@
 package com.llanquihuetour.ui;
 
-import com.llanquihuetour.data.GestorDatos;
-import com.llanquihuetour.model.Tour;
+import com.llanquihuetour.data.GestorServicios;
+import com.llanquihuetour.model.ServicioTuristico;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import static com.llanquihuetour.util.Color.*;
 
@@ -12,81 +11,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try {
-            System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
-            System.out.println("🌎 Bienvenido al Sistema de " + CYAN.getColor() + "Llanquihue Tour" + RESET.getColor());
-            System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
+        System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
+        System.out.println("🌎 Bienvenido al Sistema de " + CYAN.getColor() + "Llanquihue Tour" + RESET.getColor());
+        System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
 
-            // === GESTIÓN DE TOURS ===
-            System.out.println(PURPLE.getColor() + "🗺️ CATÁLOGO DE TOURS DISPONIBLES" + RESET.getColor());
-            System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
-            System.out.println();
+        // === JERARQUÍA DE SERVICIOS TURÍSTICOS (HERENCIA) ===
+        System.out.println(PURPLE.getColor() + "🧬 SERVICIOS TURÍSTICOS DISPONIBLES" + RESET.getColor());
+        System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
+        System.out.println();
 
-            // Crear gestor y cargar datos
-            GestorDatos gestor = new GestorDatos();
-            ArrayList<Tour> tours = gestor.cargarTours();
+        // Crear gestor de servicios y generar objetos de prueba
+        GestorServicios gestorServicios = new GestorServicios();
+        List<ServicioTuristico> servicios = gestorServicios.crearServicios();
 
-            // 1. Mostrar todos los elementos de la colección
-            System.out.println(CYAN.getColor() + "📋 LISTA COMPLETA DE TOURS:" + RESET.getColor());
-            System.out.println(BLUE.getColor() + "----------------------------------------------------" + RESET.getColor());
-
-            for (Tour tour : tours) {
-                System.out.println(tour);
-            }
-
-            System.out.println(GREEN.getColor() + "Total de tours disponibles: " + tours.size() + RESET.getColor());
-            System.out.println();
-
-            // 2. Filtrar según condición (precio > 40000)
-            int precioMinimo = 40000;
-            ArrayList<Tour> toursFiltrados = new ArrayList<>();
-
-            for (Tour tour : tours) {
-                if (tour.getPrecio() > precioMinimo) {
-                    toursFiltrados.add(tour);
-                }
-            }
-
-            // 3. Imprimir resultados filtrados
-            System.out.println(YELLOW.getColor() + "🔍 TOURS PREMIUM (precio mayor a $" + String.format("%,d", precioMinimo) + " CLP):" + RESET.getColor());
-            System.out.println(BLUE.getColor() + "----------------------------------------------------" + RESET.getColor());
-
-            if (toursFiltrados.isEmpty()) {
-                System.out.println(RED.getColor() + "No se encontraron tours que cumplan el criterio." + RESET.getColor());
-            } else {
-                for (Tour tour : toursFiltrados) {
-                    System.out.println(tour);
-                }
-                System.out.println(GREEN.getColor() + "Total de tours premium: " + toursFiltrados.size() + RESET.getColor());
-            }
-            
-            // 4. Búsqueda simple por destino
-            String destinoBuscado = "Puerto Varas";
-            ArrayList<Tour> toursPorDestino = new ArrayList<>();
-
-            for (Tour tour : tours) {
-                if (tour.getDestino().equalsIgnoreCase(destinoBuscado)) {
-                    toursPorDestino.add(tour);
-                }
-            }
-
-            System.out.println();
-            System.out.println(CYAN.getColor() + "🔎 BÚSQUEDA POR DESTINO: " + destinoBuscado + RESET.getColor());
-            System.out.println(BLUE.getColor() + "----------------------------------------------------" + RESET.getColor());
-
-            if (toursPorDestino.isEmpty()) {
-                System.out.println(RED.getColor() + "No se encontraron tours para el destino indicado." + RESET.getColor());
-            } else {
-                for (Tour tour : toursPorDestino) {
-                    System.out.println(tour);
-                }
-                System.out.println(GREEN.getColor() + "Total encontrados: " + toursPorDestino.size() + RESET.getColor());
-            }
-
-            System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
-
-        } catch (IOException e) {
-            System.out.println(RED.getColor() + "ERROR al cargar datos: " + e.getMessage() + RESET.getColor());
+        // Mostrar cada servicio usando su método toString() (polimorfismo)
+        for (ServicioTuristico servicio : servicios) {
+            System.out.println(servicio);
         }
+
+        System.out.println(GREEN.getColor() + "Total de servicios turísticos: " + servicios.size() + RESET.getColor());
+        System.out.println(BLUE.getColor() + "====================================================" + RESET.getColor());
     }
 }

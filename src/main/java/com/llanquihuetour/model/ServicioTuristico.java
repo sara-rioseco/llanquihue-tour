@@ -1,29 +1,33 @@
 package com.llanquihuetour.model;
 
 /**
- * Representa un tour ofrecido por la agencia Llanquihue Tour.
- * Incluye información sobre nombre, destino y precio.
+ * Superclase que representa un servicio turístico ofrecido
+ * por la agencia Llanquihue Tour. Define los atributos comunes
+ * a todos los servicios: nombre, destino, precio y duración en horas.
  *
  * @author Sara Rioseco
  * @version 1.0
  */
-public class Tour {
+public class ServicioTuristico {
 
     private String nombre;
     private String destino;
     private int precio;
+    private int duracionHoras;
 
     /**
-     * Crea un nuevo tour.
+     * Crea un nuevo servicio turístico.
      *
-     * @param nombre nombre del tour
-     * @param destino destino del tour
-     * @param precio precio del tour en pesos chilenos
+     * @param nombre nombre del servicio
+     * @param destino ciudad o lugar de destino del servicio
+     * @param precio precio del servicio en pesos chilenos
+     * @param duracionHoras duración del servicio en horas
      */
-    public Tour(String nombre, String destino, int precio) {
+    public ServicioTuristico(String nombre, String destino, int precio, int duracionHoras) {
         setNombre(nombre);
         setDestino(destino);
         setPrecio(precio);
+        setDuracionHoras(duracionHoras);
     }
 
     public String getNombre() {
@@ -59,17 +63,30 @@ public class Tour {
         this.precio = precio;
     }
 
+    public int getDuracionHoras() {
+        return duracionHoras;
+    }
+
+    public void setDuracionHoras(int duracionHoras) {
+        if (duracionHoras <= 0) {
+            throw new IllegalArgumentException("La duración debe ser mayor a 0 horas.");
+        }
+        this.duracionHoras = duracionHoras;
+    }
+
     @Override
     public String toString() {
         return String.format("""
-            Tour:
+            Servicio Turístico:
             Nombre: %s
             Destino: %s
             Precio: $%,d CLP
+            Duración: %d horas
             """,
                 nombre,
                 destino,
-                precio
+                precio,
+                duracionHoras
         );
     }
 }

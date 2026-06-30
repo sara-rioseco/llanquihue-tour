@@ -1,7 +1,0 @@
-Tour Volcán Osorno;Puerto Varas;45000
-Navegación Isla de Chiloé;Ancud;65000
-City Tour Puerto Montt;Puerto Montt;25000
-Saltos del Petrohué;Puerto Varas;38000
-Frutillar y Teatro del Lago;Frutillar;32000
-Ruta de los Volcanes;Puerto Varas;85000
-Parque Nacional Alerce Andino;Puerto Montt;55000
