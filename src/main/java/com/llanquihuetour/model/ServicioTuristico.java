@@ -74,6 +74,21 @@ public class ServicioTuristico {
         this.duracionHoras = duracionHoras;
     }
 
+    public void mostrarInformacion() {
+        System.out.printf("""
+            Servicio Turístico:
+            Nombre: %s
+            Destino: %s
+            Precio: $%,d CLP
+            Duración: %d horas
+            %n""",
+                nombre,
+                destino,
+                precio,
+                duracionHoras
+        );
+    }
+
     @Override
     public String toString() {
         return String.format("""

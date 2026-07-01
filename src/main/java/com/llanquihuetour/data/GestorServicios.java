@@ -18,6 +18,17 @@ import java.util.List;
 public class GestorServicios {
 
     /**
+     * Recorre la lista de servicios turísticos e invoca
+     * {@code mostrarInformacion()} polimórficamente sobre cada elemento.
+     */
+    public void mostrarServicios() {
+        List<ServicioTuristico> servicios = crearServicios();
+        for (ServicioTuristico servicio : servicios) {
+            servicio.mostrarInformacion();
+        }
+    }
+
+    /**
      * Crea al menos dos objetos de cada subclase de
      * {@link ServicioTuristico} y los devuelve en una lista.
      *

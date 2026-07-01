@@ -8,28 +8,27 @@ La aplicación aplica conceptos fundamentales de la programación orientada a ob
 
 ---
 
-## Objetivo de la Semana 6
+## Objetivo de la Semana 7
 
-El foco de esta semana es **diseñar una jerarquía de clases con herencia simple**, bien organizada y separada por responsabilidad. Concretamente se trabaja:
+El foco de esta semana es **aplicar polimorfismo y colecciones genéricas**, extendiendo la jerarquía de clases diseñada en la semana anterior. Concretamente se trabaja:
 
-* Crear una **superclase** `ServicioTuristico` con los atributos comunes.
-* Crear **subclases** (`RutaGastronomica`, `PaseoLacustre`, `ExcursionCultural`) con sus atributos específicos.
-* Usar `extends` para heredar y `super(...)` en los constructores.
-* Sobrescribir `toString()` con `@Override` en cada subclase.
-* Organizar el proyecto en los paquetes `model`, `data` y `ui`.
-* Crear objetos de prueba en `GestorServicios` y mostrarlos por consola desde `Main`.
+* Agregar el método `mostrarInformacion()` a la superclase `ServicioTuristico` con una implementación base.
+* Sobrescribir `mostrarInformacion()` con `@Override` en cada subclase (`RutaGastronomica`, `PaseoLacustre`, `ExcursionCultural`), mostrando la información específica de cada tipo de servicio.
+* Declarar una colección polimórfica `List<ServicioTuristico>` en `GestorServicios` con al menos cinco instancias combinando las tres subclases.
+* Recorrer la colección con un bucle `for-each`, invocando `mostrarInformacion()` desde referencias del tipo `ServicioTuristico`.
+* Actualizar `Main` para delegar la llamada al método polimórfico.
 
 ---
 
 ## Clases creadas
 
 ### Superclase
-* **`ServicioTuristico`** — clase padre que define los atributos comunes a todos los servicios: `nombre`, `destino`, `precio` y `duracionHoras`. Incluye constructores, getters, setters y `toString()`.
+* **`ServicioTuristico`** — clase padre que define los atributos comunes a todos los servicios: `nombre`, `destino`, `precio` y `duracionHoras`. Incluye constructores, getters, setters, `toString()` y el método base `mostrarInformacion()`.
 
 ### Subclases
-* **`RutaGastronomica`** — hereda de `ServicioTuristico` y agrega el atributo específico `numeroDeParadas`.
-* **`PaseoLacustre`** — hereda de `ServicioTuristico` y agrega el atributo específico `tipoEmbarcacion`.
-* **`ExcursionCultural`** — hereda de `ServicioTuristico` y agrega el atributo específico `lugarHistorico`.
+* **`RutaGastronomica`** — hereda de `ServicioTuristico`, agrega `numeroDeParadas` y sobrescribe `mostrarInformacion()` con `@Override`.
+* **`PaseoLacustre`** — hereda de `ServicioTuristico`, agrega `tipoEmbarcacion` y sobrescribe `mostrarInformacion()` con `@Override`.
+* **`ExcursionCultural`** — hereda de `ServicioTuristico`, agrega `lugarHistorico` y sobrescribe `mostrarInformacion()` con `@Override`.
 
 ### Clases de soporte (semanas anteriores)
 * **`Persona`** — clase base para personas del sistema.
@@ -100,6 +99,7 @@ Todas las subclases:
 * Usan `extends ServicioTuristico`.
 * Llaman a `super(nombre, destino, precio, duracionHoras)` en su constructor.
 * Sobrescriben `toString()` con `@Override` mostrando su información completa.
+* Sobrescriben `mostrarInformacion()` con `@Override`, invocado polimórficamente desde referencias `ServicioTuristico`.
 
 ---
 
@@ -128,15 +128,24 @@ Todas las subclases:
 
 ---
 
-## Instrucciones para ejecutar desde Main
+## Instrucciones para compilar y ejecutar
+
+### Desde IntelliJ IDEA
 
 1. Abrir el proyecto en IntelliJ IDEA.
 2. Ubicar la clase `Main` dentro del paquete `com.llanquihuetour.ui`.
 3. Ejecutar el método `main()`.
 4. Revisar la información mostrada en la consola:
     - Mensaje de bienvenida al sistema.
-    - Listado de todos los servicios turísticos (rutas gastronómicas, paseos lacustres y excursiones culturales) con sus atributos completos.
+    - Listado polimórfico de todos los servicios turísticos, cada uno mostrando su información específica mediante `mostrarInformacion()`.
     - Total de servicios turísticos creados.
+
+### Desde la terminal con Maven
+
+```bash
+mvn compile
+mvn exec:java -Dexec.mainClass="com.llanquihuetour.ui.Main"
+```
 
 ---
 

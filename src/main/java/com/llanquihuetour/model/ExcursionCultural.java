@@ -38,6 +38,24 @@ public class ExcursionCultural extends ServicioTuristico {
     }
 
     @Override
+    public void mostrarInformacion() {
+        System.out.printf("""
+            Excursión Cultural:
+            Nombre: %s
+            Destino: %s
+            Precio: $%,d CLP
+            Duración: %d horas
+            Lugar histórico: %s
+            %n""",
+                getNombre(),
+                getDestino(),
+                getPrecio(),
+                getDuracionHoras(),
+                lugarHistorico
+        );
+    }
+
+    @Override
     public String toString() {
         return String.format("""
             Excursión Cultural:

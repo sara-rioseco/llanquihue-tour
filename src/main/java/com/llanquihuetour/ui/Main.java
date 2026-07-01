@@ -24,9 +24,9 @@ public class Main {
         GestorServicios gestorServicios = new GestorServicios();
         List<ServicioTuristico> servicios = gestorServicios.crearServicios();
 
-        // Mostrar cada servicio usando su método toString() (polimorfismo)
+        // Mostrar cada servicio usando mostrarInformacion() (polimorfismo)
         for (ServicioTuristico servicio : servicios) {
-            System.out.println(servicio);
+            servicio.mostrarInformacion();
         }
 
         System.out.println(GREEN.getColor() + "Total de servicios turísticos: " + servicios.size() + RESET.getColor());
