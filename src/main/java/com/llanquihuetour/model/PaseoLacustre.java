@@ -38,6 +38,12 @@ public class PaseoLacustre extends ServicioTuristico {
     }
 
     @Override
+    public String mostrarResumen() {
+        return String.format("Paseo Lacustre: %s | Destino: %s | Embarcación: %s",
+                getNombre(), getDestino(), tipoEmbarcacion);
+    }
+
+    @Override
     public void mostrarInformacion() {
         System.out.printf("""
             Paseo Lacustre:

@@ -9,34 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gestor encargado de crear instancias de prueba de los
- * distintos servicios turísticos que ofrece Llanquihue Tour.
+ * Gestor encargado de crear y mostrar los distintos servicios
+ * turísticos que ofrece Llanquihue Tour. La lista de servicios se
+ * construye una sola vez al instanciar el gestor y queda disponible
+ * a través de {@link #getServicios()}.
  *
  * @author Sara Rioseco
  * @version 1.0
  */
 public class GestorServicios {
 
+    private final List<ServicioTuristico> servicios = new ArrayList<>();
+
     /**
-     * Recorre la lista de servicios turísticos e invoca
-     * {@code mostrarInformacion()} polimórficamente sobre cada elemento.
+     * Crea el gestor y carga los servicios turísticos de prueba.
      */
-    public void mostrarServicios() {
-        List<ServicioTuristico> servicios = crearServicios();
-        for (ServicioTuristico servicio : servicios) {
-            servicio.mostrarInformacion();
-        }
+    public GestorServicios() {
+        crearServicios();
     }
 
     /**
      * Crea al menos dos objetos de cada subclase de
-     * {@link ServicioTuristico} y los devuelve en una lista.
-     *
-     * @return lista con los servicios turísticos de prueba
+     * {@link ServicioTuristico} y los agrega a la colección.
      */
-    public List<ServicioTuristico> crearServicios() {
-        List<ServicioTuristico> servicios = new ArrayList<>();
-
+    private void crearServicios() {
         // Rutas gastronómicas
         servicios.add(new RutaGastronomica("Sabores del Lago", "Frutillar", 28000, 4, 5));
         servicios.add(new RutaGastronomica("Cervecería y Cocina Alemana", "Puerto Varas", 22000, 3, 3));
@@ -48,7 +44,24 @@ public class GestorServicios {
         // Excursiones culturales
         servicios.add(new ExcursionCultural("Patrimonio de Frutillar", "Frutillar", 40000, 5, "Teatro del Lago"));
         servicios.add(new ExcursionCultural("Colonización Alemana", "Puerto Varas", 38000, 4, "Museo Colonial Alemán"));
+    }
 
+    /**
+     * Retorna la colección de servicios turísticos.
+     *
+     * @return lista con los servicios turísticos creados
+     */
+    public List<ServicioTuristico> getServicios() {
         return servicios;
+    }
+
+    /**
+     * Recorre la lista de servicios turísticos e invoca
+     * {@code mostrarInformacion()} polimórficamente sobre cada elemento.
+     */
+    public void mostrarServicios() {
+        for (ServicioTuristico servicio : servicios) {
+            servicio.mostrarInformacion();
+        }
     }
 }

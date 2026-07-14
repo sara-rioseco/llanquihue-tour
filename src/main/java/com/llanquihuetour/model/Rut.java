@@ -27,7 +27,7 @@ public class Rut {
         }
 
         if (!numero.matches("[0-9]+-[0-9kK]")) {
-            throw new RutInvalidException("Formato RUT inválido. Expected XXXXXXXX-X");
+            throw new RutInvalidException("Formato de RUT inválido. Formato esperado: 12345678-9");
         }
 
         if (!validarRut(numero)) {

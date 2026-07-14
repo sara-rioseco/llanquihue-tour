@@ -46,6 +46,12 @@ public class Cliente extends Persona {
     }
 
     @Override
+    public String mostrarResumen() {
+        return String.format("Cliente: %s %s | Tipo: %s | RUT: %s",
+                getNombre(), getApellido(), tipoCliente, getRut());
+    }
+
+    @Override
     public String toString() {
         return String.format("""
             Datos del Cliente:

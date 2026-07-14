@@ -38,6 +38,12 @@ public class RutaGastronomica extends ServicioTuristico {
     }
 
     @Override
+    public String mostrarResumen() {
+        return String.format("Ruta Gastronómica: %s | Destino: %s | Paradas: %d",
+                getNombre(), getDestino(), numeroDeParadas);
+    }
+
+    @Override
     public void mostrarInformacion() {
         System.out.printf("""
             Ruta Gastronómica:

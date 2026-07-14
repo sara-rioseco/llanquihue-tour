@@ -1,14 +1,18 @@
 package com.llanquihuetour.model;
 
 /**
- * Superclase que representa un servicio turístico ofrecido
+ * Superclase abstracta que representa un servicio turístico ofrecido
  * por la agencia Llanquihue Tour. Define los atributos comunes
  * a todos los servicios: nombre, destino, precio y duración en horas.
+ *
+ * Es abstracta porque no existe un servicio turístico "genérico":
+ * cada servicio concreto debe ser una de sus subclases y está obligado
+ * a definir su propia versión de {@link #mostrarInformacion()}.
  *
  * @author Sara Rioseco
  * @version 1.0
  */
-public class ServicioTuristico {
+public abstract class ServicioTuristico implements Registrable {
 
     private String nombre;
     private String destino;
@@ -74,20 +78,17 @@ public class ServicioTuristico {
         this.duracionHoras = duracionHoras;
     }
 
-    public void mostrarInformacion() {
-        System.out.printf("""
-            Servicio Turístico:
-            Nombre: %s
-            Destino: %s
-            Precio: $%,d CLP
-            Duración: %d horas
-            %n""",
-                nombre,
-                destino,
-                precio,
-                duracionHoras
-        );
+    @Override
+    public String mostrarResumen() {
+        return String.format("Servicio Turístico: %s | Destino: %s | Precio: $%,d CLP | Duración: %d horas",
+                nombre, destino, precio, duracionHoras);
     }
+
+    /**
+     * Muestra por consola la información específica del servicio.
+     * Cada subclase concreta está obligada a implementar su propia versión.
+     */
+    public abstract void mostrarInformacion();
 
     @Override
     public String toString() {

@@ -7,7 +7,7 @@ package com.llanquihuetour.model;
  * @author Sara Rioseco
  * @version 1.0
  */
-public class Persona {
+public class Persona implements Registrable {
 
     private String nombre;
     private String apellido;
@@ -84,6 +84,11 @@ public class Persona {
                     campo + " no puede estar vacío."
             );
         }
+    }
+
+    @Override
+    public String mostrarResumen() {
+        return String.format("Persona: %s %s | RUT: %s", nombre, apellido, rut);
     }
 
     @Override

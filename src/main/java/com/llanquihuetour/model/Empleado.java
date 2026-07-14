@@ -46,6 +46,12 @@ public class Empleado extends Persona {
     }
 
     @Override
+    public String mostrarResumen() {
+        return String.format("Empleado: %s %s | Cargo: %s | RUT: %s",
+                getNombre(), getApellido(), cargo, getRut());
+    }
+
+    @Override
     public String toString() {
         return String.format("""
             Datos del Empleado:

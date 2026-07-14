@@ -38,6 +38,12 @@ public class ExcursionCultural extends ServicioTuristico {
     }
 
     @Override
+    public String mostrarResumen() {
+        return String.format("Excursión Cultural: %s | Destino: %s | Lugar histórico: %s",
+                getNombre(), getDestino(), lugarHistorico);
+    }
+
+    @Override
     public void mostrarInformacion() {
         System.out.printf("""
             Excursión Cultural:
