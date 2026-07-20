@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa un cliente de la agencia de turismo Llanquihue Tour.
  *
@@ -35,14 +37,7 @@ public class Cliente extends Persona {
     }
 
     public void setTipoCliente(String tipoCliente) {
-
-        if (tipoCliente == null || tipoCliente.isBlank()) {
-            throw new IllegalArgumentException(
-                    "El tipo de cliente no puede estar vacío."
-            );
-        }
-
-        this.tipoCliente = tipoCliente;
+        this.tipoCliente = Validador.soloLetras(tipoCliente, "Tipo de cliente");
     }
 
     @Override

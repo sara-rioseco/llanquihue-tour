@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Superclase abstracta que representa un servicio turístico ofrecido
  * por la agencia Llanquihue Tour. Define los atributos comunes
@@ -39,10 +41,7 @@ public abstract class ServicioTuristico implements Registrable {
     }
 
     public void setNombre(String nombre) {
-        if (nombre == null || nombre.isBlank()) {
-            throw new IllegalArgumentException("El nombre no puede estar vacío.");
-        }
-        this.nombre = nombre;
+        this.nombre = Validador.requerido(nombre, "Nombre");
     }
 
     public String getDestino() {
@@ -50,10 +49,7 @@ public abstract class ServicioTuristico implements Registrable {
     }
 
     public void setDestino(String destino) {
-        if (destino == null || destino.isBlank()) {
-            throw new IllegalArgumentException("El destino no puede estar vacío.");
-        }
-        this.destino = destino;
+        this.destino = Validador.soloLetras(destino, "Destino");
     }
 
     public int getPrecio() {
@@ -61,10 +57,7 @@ public abstract class ServicioTuristico implements Registrable {
     }
 
     public void setPrecio(int precio) {
-        if (precio < 0) {
-            throw new IllegalArgumentException("El precio no puede ser negativo.");
-        }
-        this.precio = precio;
+        this.precio = Validador.noNegativo(precio, "Precio");
     }
 
     public int getDuracionHoras() {
@@ -72,10 +65,7 @@ public abstract class ServicioTuristico implements Registrable {
     }
 
     public void setDuracionHoras(int duracionHoras) {
-        if (duracionHoras <= 0) {
-            throw new IllegalArgumentException("La duración debe ser mayor a 0 horas.");
-        }
-        this.duracionHoras = duracionHoras;
+        this.duracionHoras = Validador.positivo(duracionHoras, "Duración (horas)");
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Subclase que representa una ruta gastronómica.
  * Hereda de {@link ServicioTuristico} y agrega el número
@@ -31,10 +33,7 @@ public class RutaGastronomica extends ServicioTuristico {
     }
 
     public void setNumeroDeParadas(int numeroDeParadas) {
-        if (numeroDeParadas <= 0) {
-            throw new IllegalArgumentException("El número de paradas debe ser mayor a 0.");
-        }
-        this.numeroDeParadas = numeroDeParadas;
+        this.numeroDeParadas = Validador.positivo(numeroDeParadas, "Número de paradas");
     }
 
     @Override

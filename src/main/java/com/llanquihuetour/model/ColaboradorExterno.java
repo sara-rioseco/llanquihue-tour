@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa un colaborador externo que presta servicios
  * a la agencia Llanquihue Tour (por ejemplo, empresas de
@@ -43,10 +45,7 @@ public class ColaboradorExterno extends Persona {
     }
 
     public void setEmpresa(String empresa) {
-        if (empresa == null || empresa.isBlank()) {
-            throw new IllegalArgumentException("La empresa no puede estar vacía.");
-        }
-        this.empresa = empresa;
+        this.empresa = Validador.requerido(empresa, "Empresa");
     }
 
     public String getTipoServicio() {
@@ -54,10 +53,7 @@ public class ColaboradorExterno extends Persona {
     }
 
     public void setTipoServicio(String tipoServicio) {
-        if (tipoServicio == null || tipoServicio.isBlank()) {
-            throw new IllegalArgumentException("El tipo de servicio no puede estar vacío.");
-        }
-        this.tipoServicio = tipoServicio;
+        this.tipoServicio = Validador.soloLetras(tipoServicio, "Tipo de servicio");
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa un vehículo utilizado por la agencia Llanquihue Tour
  * para trasladar a los pasajeros durante los distintos servicios
@@ -36,10 +38,7 @@ public class Vehiculo implements Registrable {
     }
 
     public void setPatente(String patente) {
-        if (patente == null || patente.isBlank()) {
-            throw new IllegalArgumentException("La patente no puede estar vacía.");
-        }
-        this.patente = patente.toUpperCase();
+        this.patente = Validador.patente(patente, "Patente");
     }
 
     public String getMarca() {
@@ -47,10 +46,7 @@ public class Vehiculo implements Registrable {
     }
 
     public void setMarca(String marca) {
-        if (marca == null || marca.isBlank()) {
-            throw new IllegalArgumentException("La marca no puede estar vacía.");
-        }
-        this.marca = marca;
+        this.marca = Validador.requerido(marca, "Marca");
     }
 
     public String getModelo() {
@@ -58,10 +54,7 @@ public class Vehiculo implements Registrable {
     }
 
     public void setModelo(String modelo) {
-        if (modelo == null || modelo.isBlank()) {
-            throw new IllegalArgumentException("El modelo no puede estar vacío.");
-        }
-        this.modelo = modelo;
+        this.modelo = Validador.requerido(modelo, "Modelo");
     }
 
     public int getCapacidad() {
@@ -69,10 +62,7 @@ public class Vehiculo implements Registrable {
     }
 
     public void setCapacidad(int capacidad) {
-        if (capacidad <= 0) {
-            throw new IllegalArgumentException("La capacidad debe ser mayor a 0.");
-        }
-        this.capacidad = capacidad;
+        this.capacidad = Validador.positivo(capacidad, "Capacidad");
     }
 
     @Override

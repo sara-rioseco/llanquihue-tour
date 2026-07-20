@@ -1,0 +1,18 @@
+# Personas registradas en Llanquihue Tour
+# Formato: TIPO;nombre;apellido;rut;calle;ciudad;region;<campos específicos>
+#   CLIENTE      -> ...;tipoCliente
+#   EMPLEADO     -> ...;cargo
+#   GUIA         -> ...;idioma;aniosExperiencia
+#   COLABORADOR  -> ...;empresa;tipoServicio
+CLIENTE;Josefa;Vargas;12345678-5;San Francisco 789;Puerto Montt;Los Lagos;Frecuente
+CLIENTE;Andrés;Riquelme;13579246-2;Camino Ensenada Km 12;Puerto Varas;Los Lagos;Ocasional
+CLIENTE;Valentina;Oyarzún;19876543-0;Av. Philippi 235;Frutillar;Los Lagos;Nuevo
+EMPLEADO;Diego;Fuentes;15555555-6;Del Salvador 321;Puerto Varas;Los Lagos;Coordinador de Turismo
+EMPLEADO;Camila;Barrientos;17654321-3;Errázuriz 850;Llanquihue;Los Lagos;Encargada de Reservas
+GUIA;Matías;Soto;11111111-1;Av. Vicente Pérez Rosales 1234;Puerto Varas;Los Lagos;Alemán;6
+GUIA;Francisca;Leiva;18123456-3;Los Notros 77;Frutillar;Los Lagos;Inglés;4
+GUIA;Tomás;Ampuero;9876543-3;Baquedano 415;Llanquihue;Los Lagos;Español;9
+COLABORADOR;Carla;Muñoz;22222222-2;Los Colonos 456;Frutillar;Los Lagos;Transportes Lago Azul;Traslados turísticos
+COLABORADOR;Rodrigo;Paredes;14785236-3;Ruta 225 Km 8;Puerto Varas;Los Lagos;Hostal Volcanes;Alojamiento
+CLIENTE;Juan;Perez;9480895-2;San Antonio 123;Santiago;Metropolitana;Nuevo
+CLIENTE;Anita;Lalava Tina;17786044-1;San Antonio 123;Santiago;Metropolitana;Nuevo

@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa la dirección física asociada a una persona.
  *
@@ -40,8 +42,7 @@ public class Direccion {
      * @param calle nuevo nombre de la calle y número
      */
     public void setCalle(String calle) {
-        validarTexto(calle, "Calle");
-        this.calle = calle;
+        this.calle = Validador.requerido(calle, "Calle");
     }
 
     /**
@@ -59,8 +60,7 @@ public class Direccion {
      * @param ciudad nuevo nombre de la ciudad
      */
     public void setCiudad(String ciudad) {
-        validarTexto(ciudad, "Ciudad");
-        this.ciudad = ciudad;
+        this.ciudad = Validador.soloLetras(ciudad, "Ciudad");
     }
 
     /**
@@ -78,16 +78,7 @@ public class Direccion {
      * @param region nuevo nombre de la región
      */
     public void setRegion(String region) {
-        validarTexto(region, "Región");
-        this.region = region;
-    }
-
-    private void validarTexto(String valor, String campo) {
-        if (valor == null || valor.isBlank()) {
-            throw new IllegalArgumentException(
-                    campo + " no puede estar vacío."
-            );
-        }
+        this.region = Validador.soloLetras(region, "Región");
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Clase base representa una persona
  * relacionada a la agencia de turismo Llanquihue Tour.
@@ -39,8 +41,7 @@ public class Persona implements Registrable {
     }
 
     public void setNombre(String nombre) {
-        validarTexto(nombre, "Nombre");
-        this.nombre = nombre;
+        this.nombre = Validador.soloLetras(nombre, "Nombre");
     }
 
     public String getApellido() {
@@ -48,8 +49,7 @@ public class Persona implements Registrable {
     }
 
     public void setApellido(String apellido) {
-        validarTexto(apellido, "Apellido");
-        this.apellido = apellido;
+        this.apellido = Validador.soloLetras(apellido, "Apellido");
     }
 
     public Rut getRut() {
@@ -57,12 +57,7 @@ public class Persona implements Registrable {
     }
 
     public void setRut(Rut rut) {
-        if (rut == null) {
-            throw new IllegalArgumentException(
-                    "RUT no puede ser nulo"
-            );
-        }
-        this.rut = rut;
+        this.rut = Validador.noNulo(rut, "RUT");
     }
 
     public Direccion getDireccion() {
@@ -70,20 +65,7 @@ public class Persona implements Registrable {
     }
 
     public void setDireccion(Direccion direccion) {
-        if (direccion == null) {
-            throw new IllegalArgumentException(
-                    "Dirección no puede ser nulo"
-            );
-        }
-        this.direccion = direccion;
-    }
-
-    private void validarTexto(String valor, String campo) {
-        if (valor == null || valor.isBlank()) {
-            throw new IllegalArgumentException(
-                    campo + " no puede estar vacío."
-            );
-        }
+        this.direccion = Validador.noNulo(direccion, "Dirección");
     }
 
     @Override

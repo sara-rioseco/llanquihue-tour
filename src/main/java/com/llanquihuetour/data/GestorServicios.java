@@ -1,58 +1,113 @@
 package com.llanquihuetour.data;
 
-import com.llanquihuetour.model.ExcursionCultural;
-import com.llanquihuetour.model.PaseoLacustre;
-import com.llanquihuetour.model.RutaGastronomica;
 import com.llanquihuetour.model.ServicioTuristico;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
- * Gestor encargado de crear y mostrar los distintos servicios
- * turísticos que ofrece Llanquihue Tour. La lista de servicios se
- * construye una sola vez al instanciar el gestor y queda disponible
- * a través de {@link #getServicios()}.
+ * Gestor encargado de administrar los servicios turísticos que ofrece
+ * Llanquihue Tour: mantiene la colección, permite agregar nuevos
+ * servicios y ofrece operaciones de búsqueda y filtrado.
+ *
+ * Los servicios iniciales se cargan desde el archivo
+ * {@code data/servicios.txt} mediante la clase utilitaria
+ * {@code CargadorDatos} y se entregan al constructor.
  *
  * @author Sara Rioseco
- * @version 1.0
+ * @version 2.0
  */
 public class GestorServicios {
 
     private final List<ServicioTuristico> servicios = new ArrayList<>();
 
     /**
-     * Crea el gestor y carga los servicios turísticos de prueba.
+     * Crea el gestor con la colección inicial de servicios.
+     *
+     * @param serviciosIniciales servicios cargados desde el archivo de datos
      */
-    public GestorServicios() {
-        crearServicios();
+    public GestorServicios(List<ServicioTuristico> serviciosIniciales) {
+        if (serviciosIniciales != null) {
+            servicios.addAll(serviciosIniciales);
+        }
     }
 
     /**
-     * Crea al menos dos objetos de cada subclase de
-     * {@link ServicioTuristico} y los agrega a la colección.
+     * Agrega un nuevo servicio turístico a la colección.
+     *
+     * @param servicio servicio a agregar
+     * @throws IllegalArgumentException si el servicio es nulo
      */
-    private void crearServicios() {
-        // Rutas gastronómicas
-        servicios.add(new RutaGastronomica("Sabores del Lago", "Frutillar", 28000, 4, 5));
-        servicios.add(new RutaGastronomica("Cervecería y Cocina Alemana", "Puerto Varas", 22000, 3, 3));
-
-        // Paseos lacustres
-        servicios.add(new PaseoLacustre("Navegación Lago Llanquihue", "Puerto Varas", 35000, 2, "Catamarán"));
-        servicios.add(new PaseoLacustre("Atardecer en el Lago", "Frutillar", 30000, 3, "Velero"));
-
-        // Excursiones culturales
-        servicios.add(new ExcursionCultural("Patrimonio de Frutillar", "Frutillar", 40000, 5, "Teatro del Lago"));
-        servicios.add(new ExcursionCultural("Colonización Alemana", "Puerto Varas", 38000, 4, "Museo Colonial Alemán"));
+    public void agregar(ServicioTuristico servicio) {
+        if (servicio == null) {
+            throw new IllegalArgumentException("El servicio no puede ser nulo.");
+        }
+        servicios.add(servicio);
     }
 
     /**
      * Retorna la colección de servicios turísticos.
      *
-     * @return lista con los servicios turísticos creados
+     * @return lista con los servicios turísticos registrados
      */
     public List<ServicioTuristico> getServicios() {
         return servicios;
+    }
+
+    /**
+     * Busca un servicio por su nombre exacto (sin distinguir mayúsculas).
+     *
+     * @param nombre nombre del servicio a buscar
+     * @return el servicio encontrado, o {@code null} si no existe
+     */
+    public ServicioTuristico buscarPorNombre(String nombre) {
+        if (nombre == null) {
+            return null;
+        }
+        for (ServicioTuristico servicio : servicios) {
+            if (servicio.getNombre().equalsIgnoreCase(nombre.strip())) {
+                return servicio;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Filtra los servicios cuyo destino contiene el texto indicado.
+     *
+     * @param destino texto a buscar en el destino
+     * @return lista de servicios que coinciden con el destino
+     */
+    public List<ServicioTuristico> filtrar(String destino) {
+        List<ServicioTuristico> resultado = new ArrayList<>();
+        if (destino == null) {
+            return resultado;
+        }
+        String buscado = destino.strip().toLowerCase(Locale.ROOT);
+        for (ServicioTuristico servicio : servicios) {
+            if (servicio.getDestino().toLowerCase(Locale.ROOT).contains(buscado)) {
+                resultado.add(servicio);
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Filtra los servicios cuyo precio es menor o igual al máximo indicado.
+     * Sobrecarga de {@link #filtrar(String)}.
+     *
+     * @param precioMaximo precio máximo en pesos chilenos
+     * @return lista de servicios dentro del presupuesto
+     */
+    public List<ServicioTuristico> filtrar(int precioMaximo) {
+        List<ServicioTuristico> resultado = new ArrayList<>();
+        for (ServicioTuristico servicio : servicios) {
+            if (servicio.getPrecio() <= precioMaximo) {
+                resultado.add(servicio);
+            }
+        }
+        return resultado;
     }
 
     /**

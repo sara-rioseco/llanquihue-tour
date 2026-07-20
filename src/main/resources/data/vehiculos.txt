@@ -1,0 +1,6 @@
+# Vehículos de la agencia Llanquihue Tour
+# Formato: patente;marca;modelo;capacidad
+PVCT-24;Mercedes-Benz;Sprinter;18
+FRLL-31;Toyota;Hiace;12
+LKSD-87;Hyundai;H-1;10
+JTRB-56;Volvo;9800;42

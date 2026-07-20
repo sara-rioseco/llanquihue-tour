@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa un empleado de la agencia de Turismo Llanquihue Tour.
  *
@@ -35,14 +37,7 @@ public class Empleado extends Persona {
     }
 
     public void setCargo(String cargo) {
-
-        if (cargo == null || cargo.isBlank()) {
-            throw new IllegalArgumentException(
-                    "Argumento no puede estar vacío."
-            );
-        }
-
-        this.cargo = cargo;
+        this.cargo = Validador.soloLetras(cargo, "Cargo");
     }
 
     @Override

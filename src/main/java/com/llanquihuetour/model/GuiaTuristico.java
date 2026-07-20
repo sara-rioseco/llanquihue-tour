@@ -1,5 +1,7 @@
 package com.llanquihuetour.model;
 
+import com.llanquihuetour.util.Validador;
+
 /**
  * Representa un guía turístico de la agencia Llanquihue Tour.
  * Hereda de {@link Persona} y agrega el idioma principal
@@ -41,10 +43,7 @@ public class GuiaTuristico extends Persona {
     }
 
     public void setIdioma(String idioma) {
-        if (idioma == null || idioma.isBlank()) {
-            throw new IllegalArgumentException("El idioma no puede estar vacío.");
-        }
-        this.idioma = idioma;
+        this.idioma = Validador.soloLetras(idioma, "Idioma");
     }
 
     public int getAniosExperiencia() {
@@ -52,10 +51,7 @@ public class GuiaTuristico extends Persona {
     }
 
     public void setAniosExperiencia(int aniosExperiencia) {
-        if (aniosExperiencia < 0) {
-            throw new IllegalArgumentException("Los años de experiencia no pueden ser negativos.");
-        }
-        this.aniosExperiencia = aniosExperiencia;
+        this.aniosExperiencia = Validador.noNegativo(aniosExperiencia, "Años de experiencia");
     }
 
     @Override

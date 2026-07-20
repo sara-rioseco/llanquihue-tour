@@ -1,0 +1,11 @@
+# Servicios turísticos ofrecidos por Llanquihue Tour
+# Formato: TIPO;nombre;destino;precio;duracionHoras;<campo específico>
+#   RUTA      -> ...;numeroDeParadas
+#   PASEO     -> ...;tipoEmbarcacion
+#   EXCURSION -> ...;lugarHistorico
+RUTA;Sabores del Lago;Frutillar;28000;4;5
+RUTA;Cervecería y Cocina Alemana;Puerto Varas;22000;3;3
+PASEO;Navegación Lago Llanquihue;Puerto Varas;35000;2;Catamarán
+PASEO;Atardecer en el Lago;Frutillar;30000;3;Velero
+EXCURSION;Patrimonio de Frutillar;Frutillar;40000;5;Teatro del Lago
+EXCURSION;Colonización Alemana;Puerto Varas;38000;4;Museo Colonial Alemán
